@@ -60,11 +60,13 @@ Using Fargate as computing
 
 ![Screenshot 2025-04-04 121441](https://github.com/user-attachments/assets/1f12d704-7b72-465c-bf5e-67d2c4958fd2)
 
-## Here, I set the desired capacity to 2, which acts as the minimum number of running containers (tasks) in the service.
+- Here, I set the desired capacity to 2, which acts as the minimum number of running containers (tasks) in the service.
 
 ![Screenshot 2025-04-04 121451](https://github.com/user-attachments/assets/32b330e8-4952-4fe4-988d-5bac00701c32)
 ![Screenshot 2025-04-04 121459](https://github.com/user-attachments/assets/d3586568-49a0-4295-9105-ab65926b06f2)
 ![Screenshot 2025-04-04 121511](https://github.com/user-attachments/assets/219c9502-1666-4bd9-aaf6-dfe7414c3b56)
+
+## With the DNS URL provided by the Load Balancer, we can access the containerized application and verify that the site is running correctly.
 ![Screenshot 2025-04-04 121707](https://github.com/user-attachments/assets/70df11af-d8f3-4dd7-95ea-b2ba248fad74)
 ![Screenshot 2025-04-04 123538](https://github.com/user-attachments/assets/d0e0d86f-51e9-497f-bc7e-e76cb862403c)
 
