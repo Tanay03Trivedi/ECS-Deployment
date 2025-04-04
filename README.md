@@ -1,11 +1,40 @@
-# ECS-Deployment
-ECS deployment with faregate(autoscaling) and alb
+# ECS-Deployment  with faregate(autoscaling) and alb
+## keypoints
+- Create an ECR Repo
+- Push the image in that Repo
+- Create ECS Cluster
+- Create a TaskDefenation
+- Create a Service in that Cluster
+- Attach ALB DNS in CloudFront (IF want to use CDN)
+- then can Attach the CloudFront url to Route53 for DNS
+
+
+## Creating the ECR repo and pushing the Container Image
+
+docker tag tanay/ecs-eks:latest (imageurl)
+
+docker push (imageurl)
+
 ![Screenshot 2025-04-04 115836](https://github.com/user-attachments/assets/534ed351-a0cb-4661-bdee-c4974f1ffce9)
+
+
+## Creating ECS Cluster
+
+Using Fargate as computing
+
 ![Screenshot 2025-04-04 120044](https://github.com/user-attachments/assets/24b914ca-8810-4cd9-bb76-a5ab63f73cbb)
+
 ![Screenshot 2025-04-04 120118](https://github.com/user-attachments/assets/e7501fa6-7989-4a67-8671-58c4aeda6ebd)
-![Screenshot 2025-04-04 120602](https://github.com/user-attachments/assets/f32a0906-883a-49d3-9e0d-67fdcc72a81d)
-![Screenshot 2025-04-04 120614](https://github.com/user-attachments/assets/1d165d63-d983-4038-8418-293d7dd785bf)
+
+## Creating TaskDefenation
+
 ![Screenshot 2025-04-04 120959](https://github.com/user-attachments/assets/1baa5585-78a2-45aa-95e6-73ba062bcf2f)
+
+give appropiate permission (IAM Role /Polices)
+
+![Screenshot 2025-04-04 120602](https://github.com/user-attachments/assets/f32a0906-883a-49d3-9e0d-67fdcc72a81d)
+
+
 ![Screenshot 2025-04-04 121422](https://github.com/user-attachments/assets/41646407-4e55-4509-8e4c-49fc8b43f5a4)
 ![Screenshot 2025-04-04 121441](https://github.com/user-attachments/assets/1f12d704-7b72-465c-bf5e-67d2c4958fd2)
 ![Screenshot 2025-04-04 121451](https://github.com/user-attachments/assets/32b330e8-4952-4fe4-988d-5bac00701c32)
