@@ -30,13 +30,21 @@ Using Fargate as computing
 
 ![Screenshot 2025-04-04 120959](https://github.com/user-attachments/assets/1baa5585-78a2-45aa-95e6-73ba062bcf2f)
 
-give appropiate permission (IAM Role /Polices)
+- give appropiate permission (IAM Role /Polices)
+- also need to apply proper image url and port this port will be same on both side (inner port and expose port)
 
 ![Screenshot 2025-04-04 120602](https://github.com/user-attachments/assets/f32a0906-883a-49d3-9e0d-67fdcc72a81d)
 
+- Need to allow port in security group which the container using (here are may port open because I am using this in other projects also)
 
 ![Screenshot 2025-04-04 121422](https://github.com/user-attachments/assets/41646407-4e55-4509-8e4c-49fc8b43f5a4)
+
+## Creating Service for Deployment
+
 ![Screenshot 2025-04-04 121441](https://github.com/user-attachments/assets/1f12d704-7b72-465c-bf5e-67d2c4958fd2)
+
+## here i put the desired capicity to 2 which is like the minimum capacity the running container
+
 ![Screenshot 2025-04-04 121451](https://github.com/user-attachments/assets/32b330e8-4952-4fe4-988d-5bac00701c32)
 ![Screenshot 2025-04-04 121459](https://github.com/user-attachments/assets/d3586568-49a0-4295-9105-ab65926b06f2)
 ![Screenshot 2025-04-04 121511](https://github.com/user-attachments/assets/219c9502-1666-4bd9-aaf6-dfe7414c3b56)
