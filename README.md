@@ -1,17 +1,32 @@
 # ECS-Deployment  with faregate(autoscaling) and alb
 ## keypoints
-- Create an ECR Repo
-- Push the image in that Repo
-- Create ECS Cluster
-- Create a TaskDefenation
-- Create a Service in that Cluster
-- Attach ALB DNS in CloudFront (IF want to use CDN)
-- then can Attach the CloudFront url to Route53 for DNS
+- Create an ECR repository.
+
+- Push the image to that repository.
+
+- Create an ECS cluster.
+
+- Create a task definition.
+
+- Create a service in that cluster.
+
+- Attach the ALB DNS to CloudFront (if you want to use a CDN).
+
+- Then, you can attach the CloudFront URL to Route 53 for DNS.
 
 
-## Creating the ECR repo and pushing the Container Image
+## Creating the ECR Repository and Pushing the Container Image
 
-docker tag tanay/ecs-eks:latest (imageurl)
+aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<your-region>.amazonaws.com
+Tag the Image:
+
+
+docker tag tanay/ecs-eks:latest <aws_account_id>.dkr.ecr.<your-region>.amazonaws.com/ecs-eks:latest
+Push the Image to ECR:
+
+
+docker push <aws_account_id>.dkr.ecr.<your-region>.amazonaws.com/ecs-eks:latest
+Replace <your-region> and <aws_account_id> with your actual AWS region and account ID.
 
 docker push (imageurl)
 
@@ -30,12 +45,14 @@ Using Fargate as computing
 
 ![Screenshot 2025-04-04 120959](https://github.com/user-attachments/assets/1baa5585-78a2-45aa-95e6-73ba062bcf2f)
 
-- give appropiate permission (IAM Role /Polices)
-- also need to apply proper image url and port this port will be same on both side (inner port and expose port)
+- Assign the appropriate IAM role and policies to allow ECS to pull images from ECR and manage other necessary AWS resources (e.g., CloudWatch, ELB, etc.).
+- Ensure that you specify the correct ECR image URL in the task definition.
+-Set the container port and host/exposed port to be the same, so traffic is correctly routed from the load balancer to the container
 
 ![Screenshot 2025-04-04 120602](https://github.com/user-attachments/assets/f32a0906-883a-49d3-9e0d-67fdcc72a81d)
 
-- Need to allow port in security group which the container using (here are may port open because I am using this in other projects also)
+- You need to allow the port used by the container in the security group associated with the ECS service or load balancer.
+- (Note: Many ports may already be open because this security group is also used in other projects.)
 
 ![Screenshot 2025-04-04 121422](https://github.com/user-attachments/assets/41646407-4e55-4509-8e4c-49fc8b43f5a4)
 
@@ -43,7 +60,7 @@ Using Fargate as computing
 
 ![Screenshot 2025-04-04 121441](https://github.com/user-attachments/assets/1f12d704-7b72-465c-bf5e-67d2c4958fd2)
 
-## here i put the desired capicity to 2 which is like the minimum capacity the running container
+## Here, I set the desired capacity to 2, which acts as the minimum number of running containers (tasks) in the service.
 
 ![Screenshot 2025-04-04 121451](https://github.com/user-attachments/assets/32b330e8-4952-4fe4-988d-5bac00701c32)
 ![Screenshot 2025-04-04 121459](https://github.com/user-attachments/assets/d3586568-49a0-4295-9105-ab65926b06f2)
